@@ -3,50 +3,67 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <base href="/" />
     <link rel="stylesheet" href="/style.css" type="text/css" media="all" />
-
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700"
+      rel="stylesheet"
+    />
     <title>GitHub Master</title>
   </head>
 
   <body>
     <div class="container">
-      <div class="slider">
-        <div class="slider slide1">
-          <div class="caption">
-            <h2>Welcome to GitHub Master</h2>
+      <div class="slideshow">
+        <div class="slideshow-item">
+          <img src="img/img-1.jpg" />
+          <div class="slidshow-item-text">
+            <h5>Welcome to GitHub Master</h5>
+            <p>this is slide1</p>
+          </div>
+        </div>
+        <div class="slideshow-item">
+          <img src="img/img-2.jpg" />
+          <div class="slideshow-item-text">
+            <h5>Welcome to GitHub Master</h5>
+            <p>this is slider2</p>
+          </div>
+        </div>
+        <div class="slideshow-item">
+          <img src="img/img-3.jpg" />
+          <div class="slideshow-item-text">
+            <h5>Welcome to GitHub Master</h5>
+            <p>this is slide3</p>
           </div>
         </div>
       </div>
-      <h2>Fast search for your favorite repos...</h2>
-      <h3>GitHub API</h3>
-      <header class="header">
-        <form class="search" id="gitHubForm">
-          <input
-            id="usernameInput"
-            type="text"
-            class="search__field"
-            name="username"
-            placeholder="GitHub Username"
-          />
-          <button class="btn search__btn">
-            <!-- <svg class="search__icon">
+
+      <div class="container_down">
+        <h3>GitHub API</h3>
+        <h3>Fast search for your favorite repos...</h3>
+        <header class="header">
+          <form class="search" id="gitHubForm">
+            <input
+              id="usernameInput"
+              type="text"
+              class="search__field"
+              name="username"
+              placeholder="GitHub Username"
+            />
+            <button class="btn search__btn">
+              <!-- <svg class="search__icon">
               <use href="img/icons.svg#icon-magnifying-glass"></use>
             </svg> -->
-            <span>Search</span>
-          </button>
-          <p id="message"></p>
-        </form>
-        <ul id="userRepos" class="list-group"></ul>
-      </header>
+              <span>Search</span>
+            </button>
+            <p id="message"></p>
+          </form>
+          <ul id="userRepos" class="list-group"></ul>
+        </header>
+      </div>
     </div>
-
     <script>
-      //document.querySelector(".search__field").innerHTML = " ";
-      //document.getElementById("usernameInput").reset();
       gitHubForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-        //document.getElementById("usernameInput").reset();
         const usernameInput = document.getElementById("usernameInput");
         const gitHubUsername = usernameInput.value;
 
@@ -84,7 +101,6 @@
               <p><strong>URL:</strong> <a href="${repos[i].html_url}">${repos[i].html_url}</a></p>
               `;
               ul.appendChild(li);
-              document.querySelector(".search__field").innerHTML = " ";
             }
           }
         } catch (err) {
