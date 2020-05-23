@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pubilc/style.css" />
+    <link rel="stylesheet" src="./pubilc/style.css" />
     <title>GitHub Master</title>
   </head>
 
@@ -27,26 +27,59 @@
             </svg> -->
             <span>Search</span>
           </button>
+          <p id="message"></p>
         </form>
+        <ul id="userRepos" class="list-group"></ul>
       </header>
     </div>
 
     <script>
-      const gitHubForm = document.getElementById("gitHubForm");
-
-      gitHubForm.addEventListener("submit", (e) => {
+      gitHubForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-        let usernameInput = document.getElementById("usernameInput");
-        let gitHubUsername = usernameInput.value;
+        const usernameInput = document.getElementById("usernameInput");
+        const gitHubUsername = usernameInput.value;
 
-        async function getUserName(name) {
-          let response = await fetch(
-            `https://api.github.com/users/${username}`
-          );
-          let data = await response.json();
-          return data;
+        async function getUserName(username) {
+          try {
+            const response = await fetch(
+              `https://api.github.com/users/${username}/repos`
+            );
+            // handling a non 200 response from the fetch request
+            if (!response.ok) {
+              throw new Error();
+            }
+            const data = await response.json();
+            return data;
+          } catch (err) {
+            // non 200 responses handled here
+            const message = document.getElementById("message");
+            message.textContent = "This user doesn't exit! try again!";
+          }
         }
-        getUserName(gitHubUsername).then((data) => console.log(data));
+
+        try {
+          const repos = await getUserName(gitHubUsername);
+          console.log(repos);
+          if (repos.length === 0) {
+            // the user exists but has no repos
+            const message = document.getElementById("message");
+            message.textContent = "This user exists but has no repos!";
+          } else {
+            for (let i in repos) {
+              let ul = document.getElementById("userRepos");
+              let li = document.createElement("li");
+              li.innerHTML = `
+              <p><strong>Repo:</strong> ${repos[i].name}</p>
+              <p><strong>URL:</strong> <a href="${repos[i].html_url}">${repos[i].html_url}</a></p>
+              `;
+              ul.appendChild(li);
+            }
+          }
+        } catch (err) {
+          // what if the user doesn't exit
+          const message = document.getElementById("message");
+          message.textContent = "This user doesn't exit! try again!";
+        }
       });
     </script>
   </body>
