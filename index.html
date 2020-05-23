@@ -3,10 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./pubilc/style.css" />
     <title>GitHub Master</title>
   </head>
+
   <body>
     <h1>Welcome to GitHub Master</h1>
     <h2>Fast search for your favorite repos...</h2>
+    <h3>GitHub API</h3>
+    <div class="container">
+      <header class="header">
+        <form class="search" id="gitHubForm">
+          <input
+            id="usernameInput"
+            type="text"
+            class="search__field"
+            name="username"
+            placeholder="GitHub Username"
+          />
+          <button class="btn search__btn">
+            <!-- <svg class="search__icon">
+              <use href="img/icons.svg#icon-magnifying-glass"></use>
+            </svg> -->
+            <span>Search</span>
+          </button>
+        </form>
+      </header>
+    </div>
+
+    <script>
+      const gitHubForm = document.getElementById("gitHubForm");
+
+      gitHubForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let usernameInput = document.getElementById("usernameInput");
+        let gitHubUsername = usernameInput.value;
+
+        async function getUserName(name) {
+          let response = await fetch(
+            `https://api.github.com/users/${username}`
+          );
+          let data = await response.json();
+          return data;
+        }
+        getUserName(gitHubUsername()).then((data) => console.log(data));
+      });
+    </script>
   </body>
 </html>
