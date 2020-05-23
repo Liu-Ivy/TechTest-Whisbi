@@ -3,15 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" src="./pubilc/style.css" />
+    <base href="/" />
+    <link rel="stylesheet" href="/style.css" type="text/css" media="all" />
+
     <title>GitHub Master</title>
   </head>
 
   <body>
-    <h1>Welcome to GitHub Master</h1>
-    <h2>Fast search for your favorite repos...</h2>
-    <h3>GitHub API</h3>
     <div class="container">
+      <div class="slider">
+        <div class="slider slide1">
+          <div class="caption">
+            <h2>Welcome to GitHub Master</h2>
+          </div>
+        </div>
+      </div>
+      <h2>Fast search for your favorite repos...</h2>
+      <h3>GitHub API</h3>
       <header class="header">
         <form class="search" id="gitHubForm">
           <input
@@ -34,8 +42,11 @@
     </div>
 
     <script>
+      //document.querySelector(".search__field").innerHTML = " ";
+      //document.getElementById("usernameInput").reset();
       gitHubForm.addEventListener("submit", async (e) => {
         e.preventDefault();
+        //document.getElementById("usernameInput").reset();
         const usernameInput = document.getElementById("usernameInput");
         const gitHubUsername = usernameInput.value;
 
@@ -49,11 +60,11 @@
               throw new Error();
             }
             const data = await response.json();
-            return data;
+            return data.splice(0, 5);
           } catch (err) {
             // non 200 responses handled here
             const message = document.getElementById("message");
-            message.textContent = "This user doesn't exit! try again!";
+            message.textContent = `This user:${gitHubUsername} doesn't exit! try again!`;
           }
         }
 
@@ -63,7 +74,7 @@
           if (repos.length === 0) {
             // the user exists but has no repos
             const message = document.getElementById("message");
-            message.textContent = "This user exists but has no repos!";
+            message.textContent = `${gitHubUsername} has no repos!`;
           } else {
             for (let i in repos) {
               let ul = document.getElementById("userRepos");
@@ -73,13 +84,15 @@
               <p><strong>URL:</strong> <a href="${repos[i].html_url}">${repos[i].html_url}</a></p>
               `;
               ul.appendChild(li);
+              document.querySelector(".search__field").innerHTML = " ";
             }
           }
         } catch (err) {
           // what if the user doesn't exit
           const message = document.getElementById("message");
-          message.textContent = "This user doesn't exit! try again!";
+          message.textContent = `This user:${gitHubUsername} doesn't exit! try again!`;
         }
+        usernameInput.value = " ";
       });
     </script>
   </body>

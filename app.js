@@ -9,5 +9,6 @@ router.get("/", function (req, res) {
 });
 
 // Start the Express server
+app.use(express.static(__dirname + "/public"));
 app.use("/", router);
-app.listen(3000, () => console.log("Server running on port 3000!"));
+app.listen(3001, () => console.log("Server running on port 3001!"));
