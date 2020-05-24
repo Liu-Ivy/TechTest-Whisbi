@@ -14,23 +14,27 @@
   <body>
     <div class="container">
       <div class="slideshow">
-        <div class="slideshow-item">
-          <img src="img/img-1.jpg" />
+        <div class="slidershow-item">
+          <img
+            srcset="img/img-1-480w.jpg 480w, img/img-1-800w.jpg 800w"
+            sizes="(max-width: 600px) 480px, 800px"
+            src="img/img-1-800w.jpg"
+          />
           <div class="slidshow-item-text">
             <h5>Welcome to GitHub Master</h5>
             <p>this is slide1</p>
           </div>
         </div>
-        <div class="slideshow-item">
+        <div class="slidershow-item">
           <img src="img/img-2.jpg" />
-          <div class="slideshow-item-text">
+          <div class="slidshow-item-text">
             <h5>Welcome to GitHub Master</h5>
             <p>this is slider2</p>
           </div>
         </div>
-        <div class="slideshow-item">
+        <div class="slidershow-item">
           <img src="img/img-3.jpg" />
-          <div class="slideshow-item-text">
+          <div class="slidshow-item-text">
             <h5>Welcome to GitHub Master</h5>
             <p>this is slide3</p>
           </div>
@@ -38,8 +42,6 @@
       </div>
 
       <div class="container_down">
-        <h3>GitHub API</h3>
-        <h3>Fast search for your favorite repos...</h3>
         <header class="header">
           <form class="search" id="gitHubForm">
             <input
@@ -50,9 +52,9 @@
               placeholder="GitHub Username"
             />
             <button class="btn search__btn">
-              <!-- <svg class="search__icon">
-              <use href="img/icons.svg#icon-magnifying-glass"></use>
-            </svg> -->
+              <svg class="search__icon">
+                <use href="img/icons.svg#icon-magnifying-glass"></use>
+              </svg>
               <span>Search</span>
             </button>
             <p id="message"></p>
