@@ -74,6 +74,8 @@
         e.preventDefault();
         const ul = document.getElementById("userRepos");
         ul.innerHTML = "";
+        const message = document.getElementById("message");
+        message.textContent = "";
         const usernameInput = document.getElementById("usernameInput");
         const gitHubUsername = usernameInput.value;
 
@@ -90,7 +92,6 @@
             return data.splice(0, 5);
           } catch (err) {
             // non 200 responses handled here
-            const message = document.getElementById("message");
             message.textContent = `This user:${gitHubUsername} doesn't exit! try again!`;
           }
         }
@@ -100,11 +101,9 @@
           console.log(repos);
           if (repos.length === 0) {
             // the user exists but has no repos
-            const message = document.getElementById("message");
             message.textContent = `${gitHubUsername} has no repos!`;
           } else {
             for (let i in repos) {
-              let ul = document.getElementById("userRepos");
               let li = document.createElement("li");
               li.innerHTML = `
               <p><strong>Repo:</strong> ${repos[i].name}</p>
@@ -115,7 +114,6 @@
           }
         } catch (err) {
           // what if the user doesn't exit
-          const message = document.getElementById("message");
           message.textContent = `This user:${gitHubUsername} doesn't exit! try again!`;
         }
         usernameInput.value = "";
