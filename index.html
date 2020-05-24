@@ -26,14 +26,22 @@
           </div>
         </div>
         <div class="slidershow-item">
-          <img src="img/img-2.jpg" />
+          <img
+            srcset="img/img-2-480w.jpg 480w, img/img-2-800w.jpg 800w"
+            sizes="(max-width: 600px) 480px, 800px"
+            src="img/img-2-800w.jpg"
+          />
           <div class="slidshow-item-text">
             <h5>Welcome to GitHub Master</h5>
             <p>this is slider2</p>
           </div>
         </div>
         <div class="slidershow-item">
-          <img src="img/img-3.jpg" />
+          <img
+            srcset="img/img-3-480w.jpg 480w, img/img-3-800w.jpg 800w"
+            sizes="(max-width: 600px) 480px, 800px"
+            src="img/img-3-800w.jpg"
+          />
           <div class="slidshow-item-text">
             <h5>Welcome to GitHub Master</h5>
             <p>this is slide3</p>
@@ -42,30 +50,30 @@
       </div>
 
       <div class="container_down">
-        <header class="header">
-          <form class="search" id="gitHubForm">
-            <input
-              id="usernameInput"
-              type="text"
-              class="search__field"
-              name="username"
-              placeholder="GitHub Username"
-            />
-            <button class="btn search__btn">
-              <svg class="search__icon">
-                <use href="img/icons.svg#icon-magnifying-glass"></use>
-              </svg>
-              <span>Search</span>
-            </button>
-            <p id="message"></p>
-          </form>
-          <ul id="userRepos" class="list-group"></ul>
-        </header>
+        <form class="search" id="gitHubForm">
+          <input
+            id="usernameInput"
+            type="text"
+            class="search__field"
+            name="username"
+            placeholder="GitHub Username"
+          />
+          <button class="btn search__btn">
+            <svg class="search__icon">
+              <use href="img/icons.svg#icon-magnifying-glass"></use>
+            </svg>
+            <span>Search</span>
+          </button>
+        </form>
+        <p id="message"></p>
+        <ul id="userRepos" class="list-group"></ul>
       </div>
     </div>
     <script>
       gitHubForm.addEventListener("submit", async (e) => {
         e.preventDefault();
+        const ul = document.getElementById("userRepos");
+        ul.innerHTML = "";
         const usernameInput = document.getElementById("usernameInput");
         const gitHubUsername = usernameInput.value;
 
@@ -110,7 +118,7 @@
           const message = document.getElementById("message");
           message.textContent = `This user:${gitHubUsername} doesn't exit! try again!`;
         }
-        usernameInput.value = " ";
+        usernameInput.value = "";
       });
     </script>
   </body>
