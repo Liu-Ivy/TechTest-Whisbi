@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="img/favicon-round.png" />
     <link rel="stylesheet" href="/style.css" type="text/css" media="all" />
     <link
       href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700"
@@ -88,7 +89,7 @@
               throw new Error();
             }
             const data = await response.json();
-            return data.splice(0, 5);
+            return data.splice(0, 6);
           } catch (err) {
             message.textContent = `This user:${gitHubUsername} doesn't exit! try again!`;
           }
