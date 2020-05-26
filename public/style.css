@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  background-image: linear-gradient(to right bottom, #5c595246, #664b497e);
+  background-image: linear-gradient(to right bottom, #eae3d212, #664b497e);
 }
 
 .container {
@@ -18,7 +18,7 @@ body {
 }
 
 .slideshow {
-  width: 100%;
+  width: 100vw;
   height: 500px;
   position: relative;
 }
@@ -52,7 +52,7 @@ body {
   opacity: 0.8;
   background-size: cover;
   background-position: center center;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   animation: largeImg 31s infinite;
 }
 
@@ -67,7 +67,7 @@ body {
   padding: 40px 70px;
 }
 
-.slidshow-item-text h5 {
+.slidshow-item-text h1 {
   font-size: 20px;
   font-family: "Nunito Sans", sans-serif;
   text-transform: uppercase;
@@ -100,7 +100,7 @@ body {
 padding: 20px 35px;
   }
 
-.slidshow-item-text h5 {
+.slidshow-item-text h1 {
     font-size: 15px;
   }
 }
@@ -114,7 +114,7 @@ padding: 20px 35px;
     height: 50vh;
   }
 
-  .slidshow-item-text h5 {
+  .slidshow-item-text h1 {
     font-size: 10px;
   }
   .container_down {

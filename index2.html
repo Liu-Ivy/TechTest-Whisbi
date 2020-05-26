@@ -20,10 +20,9 @@
             srcset="img/img-1-480w.jpg 480w, img/img-1-800w.jpg 800w"
             sizes="(max-width: 600px) 480px, 800px"
             src="img/img-1-800w.jpg"
-            alt="background-image"
           />
           <div class="slidshow-item-text">
-            <h1>Welcome to GitHub Master</h1>
+            <h5>Welcome to GitHub Master</h5>
             <p>Easy to find the repo you like</p>
           </div>
         </div>
@@ -32,10 +31,9 @@
             srcset="img/img-2-480w.jpg 480w, img/img-2-800w.jpg 800w"
             sizes="(max-width: 600px) 480px, 800px"
             src="img/img-2-800w.jpg"
-            alt="background-image"
           />
           <div class="slidshow-item-text">
-            <h1>Welcome to GitHub Master</h1>
+            <h5>Welcome to GitHub Master</h5>
             <p>Quick search for the developer you like</p>
           </div>
         </div>
@@ -44,10 +42,9 @@
             srcset="img/img-3-480w.jpg 480w, img/img-3-800w.jpg 800w"
             sizes="(max-width: 600px) 480px, 800px"
             src="img/img-3-800w.jpg"
-            alt="background-image"
           />
           <div class="slidshow-item-text">
-            <h1>Welcome to GitHub Master</h1>
+            <h5>Welcome to GitHub Master</h5>
             <p>Fun experience for searching a repo...</p>
           </div>
         </div>
@@ -74,15 +71,10 @@
       </div>
     </div>
     <script>
-      gitHubForm.addEventListener("submit", async (e) => {
+      document.getElementById("gitHubForm").addEventLinster("submit", (e) => {
         e.preventDefault();
-        const usernameInput = document.getElementById("usernameInput");
+        const gitHubUsername = document.getElementById("usernameInput");
         const gitHubUsername = usernameInput.value;
-        const ul = document.getElementById("userRepos");
-        const message = document.getElementById("message");
-        ul.innerHTML = "";
-        message.textContent = "";
-        usernameInput.value = "";
 
         const getUserName = async (username) => {
           try {
@@ -92,31 +84,26 @@
             if (!response.ok) {
               throw new Error();
             }
-            console.log(response);
             const data = await response.json();
-            return data.splice(0, 6);
-          } catch (err) {
-            message.textContent = `This user:${gitHubUsername} doesn't exit! try again!`;
+            return data;
+          } catch (error) {
+            message.textContent = `this user is not exit`;
           }
         };
-
         try {
           const repos = await getUserName(gitHubUsername);
-          if (repos.length === 0) {
-            message.textContent = `${gitHubUsername} has no repos!`;
-          } else {
-            Object.keys(repos).forEach((key) => {
-              let li = document.createElement("li");
-              li.classList.add("repo");
-              li.innerHTML = `
-              <p><strong>Repo:</strong> ${repos[key].name}</p>
-              <p><strong>URL:</strong> <a href="${repos[key].html_url}">${repos[key].html_url}</a></p>
-              `;
-              ul.appendChild(li);
-            });
+          if(repos.length === 0){
+            message.textContent = `dosen't have repos`;
+          }else{
+            for(let i in repos){
+              let li = document.createElement('li');
+              li.innerHTML = `<p><strong>Repo:</strong> ${repos[i].name}</p>
+              <p><strong>URL:</strong> <a href="${repos[i].html_url}">${repos[i].html_url}</a></p>`
+              ul.appendChild(li)
+            }
           }
-        } catch (err) {
-          message.textContent = `This user:${gitHubUsername} doesn't exit! try again!`;
+        } catch (error) {
+          message.textContent = `This user doesn't exit!`;
         }
       });
     </script>
