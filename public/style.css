@@ -49,7 +49,7 @@ body {
   width: 100vw;
   height: 60vh;
   object-fit: cover;
-  opacity: 0.8;
+  opacity: .8;
   background-size: cover;
   background-position: center center;
   background-repeat: repeat;
@@ -83,7 +83,7 @@ body {
 }
 
 @keyframes slideImg {
-  25% {
+  20% {
     opacity: 1;
   }
   40% {
@@ -93,7 +93,7 @@ body {
 
 @keyframes largeImg {
   100% {
-    transform: scale(1.05);
+    transform: scale(1.08);
   }
 }
 
