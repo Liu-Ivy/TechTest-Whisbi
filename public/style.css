@@ -14,7 +14,6 @@ body {
 
 .container {
   width: 100vw;
-  height: 100vh;
 }
 
 .slideshow {
@@ -147,7 +146,7 @@ padding: 20px 35px;
   font-family: inherit;
   color: inherit;
   font-size: 1.7rem;
-  padding-left: 15px;
+  margin-left: 10px;
   width: 30rem;
 }
 
