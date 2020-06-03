@@ -9,4 +9,6 @@ router.get("/", function (req, res) {
 
 app.use(express.static(__dirname + "/public"));
 app.use("/", router);
-app.listen(3000, () => console.log("Server running on port 3000!"));
+app.listen(proccess.env.PORT || 3000, () =>
+  console.log("Server running on port 3000!")
+);
