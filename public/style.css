@@ -8,12 +8,9 @@ html {
   font-size: 10px;
 }
 
-body {
-  background-image: linear-gradient(to right bottom, #eae3d212, #664b497e);
-}
-
 .container {
   width: 100vw;
+  background-image: linear-gradient(to right bottom, #eae3d212, #664b497e);
 }
 
 .slideshow {
@@ -124,6 +121,7 @@ padding: 20px 35px;
 
 .container_down {
   position: absolute;
+  background-image: linear-gradient(to right bottom, #eae3d212, #664b497e);
   top: 60vh;
   width: 100%;
   margin-top: 20px;
@@ -131,7 +129,7 @@ padding: 20px 35px;
 
 .search {
   background-color: #fff;
-  border-radius: 10rem;
+  border-radius: 10rem ;
   display: flex;
   justify-content: center;
   align-items: center;
